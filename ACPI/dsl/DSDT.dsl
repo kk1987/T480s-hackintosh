@@ -3482,7 +3482,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
                 Device (B0D4)
                 {
-                    Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                    Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                     {
                         If (PCIC (Arg0))
                         {
@@ -4723,7 +4723,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         Device (LPCB)
         {
             Name (_ADR, 0x001F0000)  // _ADR: Address
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -4758,7 +4758,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         Device (PPMC)
         {
             Name (_ADR, 0x001F0002)  // _ADR: Address
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -4775,7 +4775,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         Device (SBUS)
         {
             Name (_ADR, 0x001F0004)  // _ADR: Address
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -5292,7 +5292,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         Device (GLAN)
         {
             Name (_ADR, 0x001F0006)  // _ADR: Address
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -5377,9 +5377,9 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             }
 
             Name (XFLT, 0x00)
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
-                ADBG ("_DSM")
+                ADBG ("XDSM")
                 ShiftLeft (XADH, 0x20, Local0)
                 Or (Local0, XADL, Local0)
                 And (Local0, 0xFFFFFFFFFFFFFFF0, Local0)
@@ -5939,7 +5939,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 Return (And (^XDCB, 0xFFFFFFFFFFFFFF00))
             }
 
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -6263,9 +6263,9 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 }
             }
 
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
-                ADBG ("HDAS _DSM")
+                ADBG ("HDAS XDSM")
                 If (PCIC (Arg0))
                 {
                     Return (PCID (Arg0, Arg1, Arg2, Arg3))
@@ -6277,7 +6277,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     {
                         Case (0x00)
                         {
-                            ADBG ("_DSM Fun 0")
+                            ADBG ("XDSM Fun 0")
                             Return (Buffer (One)
                             {
                                  0x0F                                           
@@ -6285,19 +6285,19 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                         }
                         Case (0x01)
                         {
-                            ADBG ("_DSM Fun 1 NHLT")
+                            ADBG ("XDSM Fun 1 NHLT")
                             Return (NBUF)
                         }
                         Case (0x02)
                         {
-                            ADBG ("_DSM Fun 2 FMSK")
+                            ADBG ("XDSM Fun 2 FMSK")
                             ADBG ("ADFM:")
                             ADBG (ADFM)
                             Return (ADFM)
                         }
                         Case (0x03)
                         {
-                            ADBG ("_DSM Fun 3 PPMS")
+                            ADBG ("XDSM Fun 3 PPMS")
                             If (CondRefOf (\_SB.PCI0.HDAS.PPMS))
                             {
                                 ADBG ("PPMS:")
@@ -6310,7 +6310,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                         }
                         Default
                         {
-                            ADBG ("_DSM Fun NOK")
+                            ADBG ("XDSM Fun NOK")
                             Return (Buffer (One)
                             {
                                  0x00                                           
@@ -6331,7 +6331,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     }
                 }
 
-                ADBG ("_DSM UUID NOK")
+                ADBG ("XDSM UUID NOK")
                 Return (Buffer (0x01)
                 {
                      0x00                                           
@@ -6345,7 +6345,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 {
                     Name (_ADR, 0x57)
                     Name (_CID, "diagsvault")
-                    Method (_DSM, 4, NotSerialized)
+                    Method (XDSM, 4, NotSerialized)
                     {
                         If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
                         Return (Package() { "address", 0x57 })
@@ -6441,7 +6441,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -6698,7 +6698,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -6955,7 +6955,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -7212,7 +7212,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -7469,7 +7469,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -7726,7 +7726,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -7983,7 +7983,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -8240,7 +8240,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -8497,7 +8497,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -8754,7 +8754,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -9011,7 +9011,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -9268,7 +9268,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -9525,7 +9525,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -9782,7 +9782,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -10039,7 +10039,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -10296,7 +10296,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -10553,7 +10553,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -10810,7 +10810,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -11067,7 +11067,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -11324,7 +11324,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -11581,7 +11581,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -11838,7 +11838,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -12095,7 +12095,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -12352,7 +12352,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 0x00, 
                 0x00
             })
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, ToUUID ("e5c937d0-3553-4d7a-9117-ea4d19c3434d") /* Device Labeling Interface */))
                 {
@@ -12525,7 +12525,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         Device (SAT0)
         {
             Name (_ADR, 0x00170000)  // _ADR: Address
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -14064,7 +14064,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD0, 0x02))
             {
                 Name (_ADR, 0x00150000)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14122,7 +14122,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD1, 0x02))
             {
                 Name (_ADR, 0x00150001)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14180,7 +14180,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD2, 0x02))
             {
                 Name (_ADR, 0x00150002)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14238,7 +14238,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD3, 0x02))
             {
                 Name (_ADR, 0x00150003)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14296,7 +14296,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD4, 0x02))
             {
                 Name (_ADR, 0x00190002)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14354,7 +14354,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD5, 0x02))
             {
                 Name (_ADR, 0x00190001)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14411,7 +14411,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD6, 0x02))
             {
                 Name (_ADR, 0x001E0002)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14468,7 +14468,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD7, 0x02))
             {
                 Name (_ADR, 0x001E0003)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14523,7 +14523,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD8, 0x02))
             {
                 Name (_ADR, 0x001E0000)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14596,7 +14596,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMD9, 0x02))
             {
                 Name (_ADR, 0x001E0001)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14669,7 +14669,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             If (LEqual (SMDA, 0x02))
             {
                 Name (_ADR, 0x00190000)  // _ADR: Address
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -14857,7 +14857,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             Name (_HID, "XXXX0000")  // _HID: Hardware ID
             Name (_CID, "PNP0C50")  // _CID: Compatible ID
             Name (_S0W, 0x03)  // _S0W: S0 Device Wake State
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, HIDG))
                 {
@@ -15179,7 +15179,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             Name (_HID, "XXXX0000")  // _HID: Hardware ID
             Name (_CID, "PNP0C50")  // _CID: Compatible ID
             Name (_S0W, 0x04)  // _S0W: S0 Device Wake State
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (LEqual (Arg0, HIDG))
                 {
@@ -16212,7 +16212,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     Store (PSTA, TEMP)
                 }
 
-                Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+                Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
                 {
                     If (PCIC (Arg0))
                     {
@@ -16311,7 +16311,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         Device (ISHD)
         {
             Name (_ADR, 0x00130000)  // _ADR: Address
-            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, NotSerialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -16342,7 +16342,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         Device (HECI)
         {
             Name (_ADR, 0x00160000)  // _ADR: Address
-            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, NotSerialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -16479,7 +16479,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     ,   3, 
                 HPLO,   1, 
                 Offset (0x36), 
-                HWAC,   16, 
+                WAC0,8,WAC1,8, 
                 HB0S,   7, 
                 HB0A,   1, 
                 HB1S,   7, 
@@ -16529,7 +16529,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 Offset (0x4C), 
                 HTMH,   8, 
                 HTML,   8, 
-                HWAK,   16, 
+                WAK0,8,WAK1,8, 
                 HMPR,   8, 
                     ,   7, 
                 HMDN,   1, 
@@ -16540,7 +16540,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 HIID,   8, 
                 Offset (0x83), 
                 HFNI,   8, 
-                HSPD,   16, 
+                SPD0,8,SPD1,8, 
                 Offset (0x88), 
                 TSL0,   7, 
                 TSR0,   1, 
@@ -17799,12 +17799,12 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             Field (ECOR, ByteAcc, NoLock, Preserve)
             {
                 Offset (0xA0), 
-                SBRC,   16, 
-                SBFC,   16, 
+                BRC0,8,BRC1,8, 
+                BFC0,8,BFC1,8, 
                 SBAE,   16, 
                 SBRS,   16, 
-                SBAC,   16, 
-                SBVO,   16, 
+                BAC0,8,BAC1,8, 
+                BVO0,8,BVO1,8, 
                 SBAF,   16, 
                 SBBS,   16
             }
@@ -17812,38 +17812,38 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             Field (ECOR, ByteAcc, NoLock, Preserve)
             {
                 Offset (0xA0), 
-                SBBM,   16, 
+                BBM0,8,BBM1,8, 
                 SBMD,   16, 
-                SBCC,   16
+                BCC0,8,BCC1,8
             }
 
             Field (ECOR, ByteAcc, NoLock, Preserve)
             {
                 Offset (0xA0), 
-                SBDC,   16, 
-                SBDV,   16, 
+                BDC0,8,BDC1,8, 
+                BDV0,8,BDV1,8, 
                 SBOM,   16, 
                 SBSI,   16, 
                 SBDT,   16, 
-                SBSN,   16
+                BSN0,8,BSN1,8
             }
 
             Field (ECOR, ByteAcc, NoLock, Preserve)
             {
                 Offset (0xA0), 
-                SBCH,   32
+                BCH0,8,BCH1,8,BCH2,8,BCH3,8
             }
 
             Field (ECOR, ByteAcc, NoLock, Preserve)
             {
                 Offset (0xA0), 
-                SBMN,   128
+                BMNX,128,//SBMN,128
             }
 
             Field (ECOR, ByteAcc, NoLock, Preserve)
             {
                 Offset (0xA0), 
-                SBDN,   128
+                BDNX,128,//SBDN,128
             }
 
             Mutex (BATM, 0x00)
@@ -17853,28 +17853,28 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 If (Arg2)
                 {
                     Or (Arg0, 0x01, HIID)
-                    Store (SBBM, Local7)
+                    Store (B1B2(BBM0,BBM1), Local7)
                     ShiftRight (Local7, 0x0F, Local7)
                     XOr (Local7, 0x01, Index (Arg1, 0x00))
                     Store (Arg0, HIID)
                     If (Local7)
                     {
-                        Multiply (SBFC, 0x0A, Local1)
+                        Multiply (B1B2 (BFC0, BFC1), 0x0A, Local1)
                     }
                     Else
                     {
-                        Store (SBFC, Local1)
+                        Store (B1B2 (BFC0, BFC1), Local1)
                     }
 
                     Store (Local1, Index (Arg1, 0x02))
                     Or (Arg0, 0x02, HIID)
                     If (Local7)
                     {
-                        Multiply (SBDC, 0x0A, Local0)
+                        Multiply (B1B2 (BDC0, BDC1), 0x0A, Local0)
                     }
                     Else
                     {
-                        Store (SBDC, Local0)
+                        Store (B1B2 (BDC0, BDC1), Local0)
                     }
 
                     Store (Local0, Index (Arg1, 0x01))
@@ -17883,17 +17883,17 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     {
                         Store (0xC8, Index (Arg1, 0x06))
                     }
-                    ElseIf (SBDV)
+                    ElseIf (B1B2 (BDV0, BDV1))
                     {
-                        Divide (0x00030D40, SBDV, Local2, Index (Arg1, 0x06))
+                        Divide (0x00030D40,B1B2(BDV0, BDV1), Local2, Index (Arg1, 0x06))
                     }
                     Else
                     {
                         Store (0x00, Index (Arg1, 0x06))
                     }
 
-                    Store (SBDV, Index (Arg1, 0x04))
-                    Store (SBSN, Local0)
+                    Store (B1B2 (BDV0, BDV1), Index (Arg1, 0x04))
+                    Store (B1B2 (BSN0, BSN1), Local0)
                     Name (SERN, Buffer (0x06)
                     {
                         "     "
@@ -17908,16 +17908,16 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
                     Store (SERN, Index (Arg1, 0x0A))
                     Or (Arg0, 0x06, HIID)
-                    Store (SBDN, Index (Arg1, 0x09))
+                    Store (RECB(0xA0,128), Index (Arg1, 0x09))
                     Or (Arg0, 0x04, HIID)
                     Name (BTYP, Buffer (0x05)
                     {
                          0x00, 0x00, 0x00, 0x00, 0x00                   
                     })
-                    Store (SBCH, BTYP)
+                    Store (B1B4(BCH0,BCH1,BCH2,BCH3), BTYP)
                     Store (BTYP, Index (Arg1, 0x0B))
                     Or (Arg0, 0x05, HIID)
-                    Store (SBMN, Index (Arg1, 0x0C))
+                    Store (RECB(0xA0,128), Index (Arg1, 0x0C))
                 }
                 Else
                 {
@@ -17937,30 +17937,30 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 If (Arg2)
                 {
                     Or (Arg0, 0x01, HIID)
-                    Store (SBCC, Local7)
+                    Store (B1B2(BCC0,BCC1), Local7)
                     Store (Local7, Index (Arg1, 0x08))
-                    Store (SBBM, Local7)
+                    Store (B1B2(BBM0,BBM1), Local7)
                     ShiftRight (Local7, 0x0F, Local7)
                     XOr (Local7, 0x01, Index (Arg1, 0x01))
                     Store (Arg0, HIID)
                     If (Local7)
                     {
-                        Multiply (SBFC, 0x0A, Local1)
+                        Multiply (B1B2 (BFC0, BFC1), 0x0A, Local1)
                     }
                     Else
                     {
-                        Store (SBFC, Local1)
+                        Store (B1B2 (BFC0, BFC1), Local1)
                     }
 
                     Store (Local1, Index (Arg1, 0x03))
                     Or (Arg0, 0x02, HIID)
                     If (Local7)
                     {
-                        Multiply (SBDC, 0x0A, Local0)
+                        Multiply (B1B2 (BDC0, BDC1), 0x0A, Local0)
                     }
                     Else
                     {
-                        Store (SBDC, Local0)
+                        Store (B1B2 (BDC0, BDC1), Local0)
                     }
 
                     Store (Local0, Index (Arg1, 0x02))
@@ -17969,17 +17969,17 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     {
                         Store (0xC8, Index (Arg1, 0x07))
                     }
-                    ElseIf (SBDV)
+                    ElseIf (B1B2 (BDV0, BDV1))
                     {
-                        Divide (0x00030D40, SBDV, Local2, Index (Arg1, 0x07))
+                        Divide (0x00030D40,B1B2(BDV0, BDV1), Local2, Index (Arg1, 0x07))
                     }
                     Else
                     {
                         Store (0x00, Index (Arg1, 0x07))
                     }
 
-                    Store (SBDV, Index (Arg1, 0x05))
-                    Store (SBSN, Local0)
+                    Store (B1B2 (BDV0, BDV1), Index (Arg1, 0x05))
+                    Store (B1B2 (BSN0, BSN1), Local0)
                     Name (SERN, Buffer (0x06)
                     {
                         "     "
@@ -17994,16 +17994,16 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
                     Store (SERN, Index (Arg1, 0x11))
                     Or (Arg0, 0x06, HIID)
-                    Store (SBDN, Index (Arg1, 0x10))
+                    Store (RECB(0xA0,128), Index (Arg1, 0x10))
                     Or (Arg0, 0x04, HIID)
                     Name (BTYP, Buffer (0x05)
                     {
                          0x00, 0x00, 0x00, 0x00, 0x00                   
                     })
-                    Store (SBCH, BTYP)
+                    Store (B1B4(BCH0,BCH1,BCH2,BCH3), BTYP)
                     Store (BTYP, Index (Arg1, 0x12))
                     Or (Arg0, 0x05, HIID)
-                    Store (SBMN, Index (Arg1, 0x13))
+                    Store (RECB(0xA0,128), Index (Arg1, 0x13))
                 }
                 Else
                 {
@@ -18057,17 +18057,17 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 Else
                 {
                     Store (Arg0, HIID)
-                    Store (SBVO, Local3)
+                    Store (B1B2 (BVO0, BVO1), Local3)
                     If (Arg2)
                     {
-                        Multiply (SBRC, 0x0A, Local2)
+                        Multiply (B1B2 (BRC0, BRC1), 0x0A, Local2)
                     }
                     Else
                     {
-                        Store (SBRC, Local2)
+                        Store (B1B2 (BRC0, BRC1), Local2)
                     }
 
-                    Store (SBAC, Local1)
+                    Store (B1B2 (BAC0, BAC1), Local1)
                     If (LGreaterEqual (Local1, 0x8000))
                     {
                         If (And (Local0, 0x01))
@@ -18162,7 +18162,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 Store (Arg1, Local0)
                 Acquire (BATM, 0xFFFF)
                 Store (Arg0, HIID)
-                Store (SBRC, Local1)
+                Store (B1B2 (BRC0, BRC1), Local1)
                 Release (BATM)
                 If (LEqual (Arg0, 0x00))
                 {
@@ -18479,6 +18479,26 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                         Return (Local2)
                     }
                 }
+            }
+            Method (RE1B, 1, NotSerialized)
+            {
+                OperationRegion(ERAM, EmbeddedControl, Arg0, 1)
+                Field(ERAM, ByteAcc, NoLock, Preserve) { BYTE, 8 }
+                Return(BYTE)
+            }
+            Method (RECB, 2, Serialized)
+            {
+                ShiftRight(Arg1, 3, Arg1)
+                Name(TEMP, Buffer(Arg1) { })
+                Add(Arg0, Arg1, Arg1)
+                Store(0, Local0)
+                While (LLess(Arg0, Arg1))
+                {
+                    Store(RE1B(Arg0), Index(TEMP, Local0))
+                    Increment(Arg0)
+                    Increment(Local0)
+                }
+                Return(TEMP)
             }
         }
 
@@ -19676,7 +19696,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
         If (LLess (Arg0, 0x04))
         {
-            If (LOr (And (\RRBF, 0x02), And (\_SB.PCI0.LPCB.EC.HWAC, 0x02)))
+            If (LOr (And (\RRBF, 0x02), And (B1B2(\_SB.PCI0.LPCB.EC.WAC0,\_SB.PCI0.LPCB.EC.WAC1), 0x02)))
             {
                 ShiftLeft (Arg0, 0x08, Local0)
                 Store (Or (0x2013, Local0), Local0)
@@ -22800,7 +22820,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
     {
         Method (_L17, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            Store (\_SB.PCI0.LPCB.EC.HWAC, Local0)
+            Store (B1B2(\_SB.PCI0.LPCB.EC.WAC0,\_SB.PCI0.LPCB.EC.WAC1), Local0)
             Store (Local0, \RRBF)
             Sleep (0x0A)
             If (And (Local0, 0x02)){}
@@ -23212,7 +23232,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 Return (WGWS)
             }
 
-            Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
+            Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
                 If (PCIC (Arg0))
                 {
@@ -30791,6 +30811,15 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 \_SB.PCI0.LPCB.EC.LED (0x0A, 0xC0)
             }
         }
+    }
+    Method (B1B2, 2, NotSerialized) { Return (Or (Arg0, ShiftLeft (Arg1, 8))) }
+    Method (B1B4, 4, NotSerialized)
+    {
+        Store(Arg3, Local0)
+        Or(Arg2, ShiftLeft(Local0, 8), Local0)
+        Or(Arg1, ShiftLeft(Local0, 8), Local0)
+        Or(Arg0, ShiftLeft(Local0, 8), Local0)
+        Return(Local0)
     }
 }
 
