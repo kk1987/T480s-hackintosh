@@ -1,0 +1,27 @@
+UEFI:
+  * TPM enabled (otherwise there is one less SSDT)
+  * "Thunderbolt BIOS Assist" enabled (reduces power draw)
+
+Clover:
+  drivers64UEFI:
+    NvmExpressDxe-64.efi, ApfsDriverLoader-64.efi, AptioMemoryFix-64.efi
+    (or OsxAptioFixDrv-64 + EmuVariableUefi-64 instead of AptioMemoryFix-64)
+  ACPI:
+    patched DSDT + orig SSDTs (nothing to patch) + SSDT-PNLF.aml
+    (set SSDR order in config.plist accordingly)
+  kexts:
+    basic: FakeSMC.kext (with all sensor plugins)
+    battery: ACPIBatteryManager.kext
+    brightness: AppleBacklightInjector.kext (installed to /L/E per Rehab's guide - don't know if Clover works)
+    audio: VoodooHDA.kext
+    iGPU: Lilu.kext + WhateverGreen.kext
+    USB (enables touchscreen & bluetooth): Lilu.kext + USBInjectAll.kext
+    keyboard/touchpad/trackpad: VoodooPS2Controller.kext
+    Ethernet: IntelMausiEthernet.kext
+    Wifi: AirportBrcmFixup.kext (with Clover kext patches; see toledo's guide at tonymacx86)
+    BT: BrcmFirmwareData.kext + BrcmPatchRAM2.kext (see above guide)
+
+Status:
+  most features work, including sleep/resume
+  brightness keys not patched yet
+  no scrolling support (both trackpad & trackpoint used as standard mouse; tluck's fork didn't help)
