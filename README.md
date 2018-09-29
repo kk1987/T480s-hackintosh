@@ -8,7 +8,7 @@ This repo is my notes and configuration files for my hackintosh (10.14 Mojave) i
 
 * i5 8250U CPU, Intel UHD 620 (no dGPU)
 * 1080p screen w/ touch (LCD: IVO R140NWF5, Touchscreen: ELAN)
-* ALC257
+* Realtek ALC257
 * Intel Ethernet
 * Synaptics TrackPoint + ELAN TrackPad
 * Synaptics Fingerprint Reader
@@ -100,7 +100,7 @@ I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
   * Set iGain=0, PCM=100, Rec=50
 * Lilu, for various stuff below to work
 * WhateverGreen, for iGPU
-  * See Devices/Properties patches in config.plist
+  * See Devices/Properties patches in config.plist (set ig-platform-id & device-id + patch for 32MB DVMT-prealloc)
 * USBInjectAll, for USB ports
   * Touchscreen, Bluetooth etc. won't work without this
   * See SSDT-UIAC.dsl for machine-specific patch
@@ -109,5 +109,5 @@ I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
 * AirportBrcmFixup, for WiFi
   * Refer to toledo's [guide](https://www.tonymacx86.com/threads/broadcom-wifi-bluetooth-guide.242423/)
   * See KextsToPatch in config.plist
-* BrcmFirmwareData/Repo + BrcmPatchRAM2, for Bluetooth
+* BrcmFirmwareRepo + BrcmPatchRAM2, for Bluetooth
   * See toledo's guide
