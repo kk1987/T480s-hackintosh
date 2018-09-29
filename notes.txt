@@ -23,5 +23,6 @@ Clover:
 
 Status:
   most features work, including sleep/resume
-  brightness keys not patched yet
   no scrolling support (both trackpad & trackpoint used as standard mouse; tluck's fork didn't help)
+  TODO - make PrtSc disable TrackPad _only_
+  TODO - make TrackPoint mid button scroll work

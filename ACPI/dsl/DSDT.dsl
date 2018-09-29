@@ -28486,30 +28486,18 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             })
             Method (_Q14, 0, NotSerialized)  // _Qxx: EC Query
             {
-                If (\_SB.PCI0.LPCB.EC.HKEY.MHKK (0x01, 0x8000))
-                {
-                    \_SB.PCI0.LPCB.EC.HKEY.MHKQ (0x1010)
-                }
+                
+                // Brightness Up
+                Notify(\_SB.PCI0.LPCB.KBD, 0x0406)
 
-                If (\VIGD)
-                {
-                    Notify (\_SB.PCI0.GFX0.DD1F, 0x86)
-                }
             }
 
             Method (_Q15, 0, NotSerialized)  // _Qxx: EC Query
             {
-                If (\_SB.PCI0.LPCB.EC.HKEY.MHKK (0x01, 0x00010000))
-                {
-                    \_SB.PCI0.LPCB.EC.HKEY.MHKQ (0x1011)
-                }
+                
+                // Brightness Down
+                Notify(\_SB.PCI0.LPCB.KBD, 0x0405)
 
-                If (\VIGD)
-                {
-                    Notify (\_SB.PCI0.GFX0.DD1F, 0x87)
-                }
-
-                Return (Zero)
             }
 
             Method (BRNS, 0, NotSerialized)
