@@ -48,7 +48,7 @@ I did a tri-boot setup with installation order as follows:
 
 * Audio: everything works fine, except for no HDMI audio and no auto switching between internal mic and external mic via the combo jack
 * HDMI: video output works, audio is muted (VoodooHDA limitation)
-* Sleep/resume: LED keeps blinking after resume (TODO)
+* Sleep/resume: lid function seems to be reversed - close/open triggers resume/sleep - use menu option as workaround
 * USB: everything works, except the second/bottom type-C port can only be used for charging
 * HID: No scrolling support; both TrackPad and TrackPoint function as PS/2 mouse
   * TODO - make PrtSc disable TrackPad _only_

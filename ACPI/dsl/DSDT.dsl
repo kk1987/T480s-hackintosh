@@ -19747,6 +19747,10 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         }
 
         Store (Zero, \RRBF)
+        If (LEqual (Arg0,3))
+        {
+            \_SI._SST (0x01)
+        }
         ADBG ("OWAK END")
         Return (WAKI)
     }
