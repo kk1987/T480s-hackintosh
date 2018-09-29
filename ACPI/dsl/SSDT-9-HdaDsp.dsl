@@ -20,7 +20,7 @@
  */
 DefinitionBlock ("", "SSDT", 2, "LENOVO", "HdaDsp", 0x00000000)
 {
-    External (_SB_.PCI0.HDAS, DeviceObj)    // (from opcode)
+    External (_SB_.PCI0.HDEF, DeviceObj)    // (from opcode)
     External (ADBG, MethodObj)    // 1 Arguments (from opcode)
     External (ADPM, IntObj)    // (from opcode)
     External (AG1H, IntObj)    // (from opcode)
@@ -30,7 +30,7 @@ DefinitionBlock ("", "SSDT", 2, "LENOVO", "HdaDsp", 0x00000000)
     External (AG3H, IntObj)    // (from opcode)
     External (AG3L, IntObj)    // (from opcode)
 
-    Scope (\_SB.PCI0.HDAS)
+    Scope (\_SB.PCI0.HDEF)
     {
         Method (PPMS, 1, Serialized)
         {

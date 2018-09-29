@@ -52,23 +52,23 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
     External (_SB_.PCI0.B0D4.NPCC, PkgObj)    // (from opcode)
     External (_SB_.PCI0.CTCD, MethodObj)    // 0 Arguments (from opcode)
     External (_SB_.PCI0.CTCN, MethodObj)    // 0 Arguments (from opcode)
-    External (_SB_.PCI0.GFX0, DeviceObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.AINT, MethodObj)    // 2 Arguments (from opcode)
-    External (_SB_.PCI0.GFX0.ALSI, UnknownObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.CBLV, UnknownObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.CDCK, UnknownObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.CLID, UnknownObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.DD1F, DeviceObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.DRDY, UnknownObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.GSCI, MethodObj)    // 0 Arguments (from opcode)
-    External (_SB_.PCI0.GFX0.GSSE, UnknownObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.IUEH, MethodObj)    // 1 Arguments (from opcode)
-    External (_SB_.PCI0.GFX0.STAT, UnknownObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.TCHE, UnknownObj)    // (from opcode)
-    External (_SB_.PCI0.GFX0.VLOC, MethodObj)    // 1 Arguments (from opcode)
-    External (_SB_.PCI0.HDAS.PPMS, MethodObj)    // 1 Arguments (from opcode)
-    External (_SB_.PCI0.HDAS.PS0X, MethodObj)    // 0 Arguments (from opcode)
-    External (_SB_.PCI0.HDAS.PS3X, MethodObj)    // 0 Arguments (from opcode)
+    External (_SB_.PCI0.IGPU, DeviceObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.AINT, MethodObj)    // 2 Arguments (from opcode)
+    External (_SB_.PCI0.IGPU.ALSI, UnknownObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.CBLV, UnknownObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.CDCK, UnknownObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.CLID, UnknownObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.DD1F, DeviceObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.DRDY, UnknownObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.GSCI, MethodObj)    // 0 Arguments (from opcode)
+    External (_SB_.PCI0.IGPU.GSSE, UnknownObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.IUEH, MethodObj)    // 1 Arguments (from opcode)
+    External (_SB_.PCI0.IGPU.STAT, UnknownObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.TCHE, UnknownObj)    // (from opcode)
+    External (_SB_.PCI0.IGPU.VLOC, MethodObj)    // 1 Arguments (from opcode)
+    External (_SB_.PCI0.HDEF.PPMS, MethodObj)    // 1 Arguments (from opcode)
+    External (_SB_.PCI0.HDEF.PS0X, MethodObj)    // 0 Arguments (from opcode)
+    External (_SB_.PCI0.HDEF.PS3X, MethodObj)    // 0 Arguments (from opcode)
     External (_SB_.PCI0.HIDW, MethodObj)    // 4 Arguments (from opcode)
     External (_SB_.PCI0.HIWC, MethodObj)    // 1 Arguments (from opcode)
     External (_SB_.PCI0.ISP0, DeviceObj)    // (from opcode)
@@ -3475,7 +3475,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     }
                 }
 
-                Device (GFX0)
+                Device (IGPU)
                 {
                     Name (_ADR, 0x00020000)  // _ADR: Address
                 }
@@ -4579,7 +4579,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         Method (_L6D, 0, Serialized)  // _Lxx: Level-Triggered GPE
         {
             \_SB.PCI0.XHC.GPEH ()
-            \_SB.PCI0.HDAS.GPEH ()
+            \_SB.PCI0.HDEF.GPEH ()
             \_SB.PCI0.GLAN.GPEH ()
             \_SB.PCI0.XDCI.GPEH ()
         }
@@ -6168,7 +6168,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
     Scope (\_SB.PCI0)
     {
-        Device (HDAS)
+        Device (HDEF)
         {
             Name (_ADR, 0x001F0003)  // _ADR: Address
             OperationRegion (HDAR, PCI_Config, 0x00, 0x0100)
@@ -6206,9 +6206,9 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
                 If (LAnd (PMEE, PMES))
                 {
-                    ADBG ("HDAS GPEH")
+                    ADBG ("HDEF GPEH")
                     Store (0x01, PMES)
-                    Notify (HDAS, 0x02)
+                    Notify (HDEF, 0x02)
                 }
             }
 
@@ -6219,9 +6219,9 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     \_SB.VMMH (0x00, 0x01)
                 }
 
-                If (CondRefOf (\_SB.PCI0.HDAS.PS0X))
+                If (CondRefOf (\_SB.PCI0.HDEF.PS0X))
                 {
-                    \_SB.PCI0.HDAS.PS0X ()
+                    \_SB.PCI0.HDEF.PS0X ()
                 }
             }
 
@@ -6232,9 +6232,9 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     \_SB.VMMH (0x00, 0x00)
                 }
 
-                If (CondRefOf (\_SB.PCI0.HDAS.PS3X))
+                If (CondRefOf (\_SB.PCI0.HDEF.PS3X))
                 {
-                    \_SB.PCI0.HDAS.PS3X ()
+                    \_SB.PCI0.HDEF.PS3X ()
                 }
             }
 
@@ -6250,10 +6250,10 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             })
             Method (_INI, 0, NotSerialized)  // _INI: Initialize
             {
-                ADBG ("HDAS _INI")
-                CreateQWordField (NBUF, \_SB.PCI0.HDAS._Y1C._MIN, NBAS)  // _MIN: Minimum Base Address
-                CreateQWordField (NBUF, \_SB.PCI0.HDAS._Y1C._MAX, NMAS)  // _MAX: Maximum Base Address
-                CreateQWordField (NBUF, \_SB.PCI0.HDAS._Y1C._LEN, NLEN)  // _LEN: Length
+                ADBG ("HDEF _INI")
+                CreateQWordField (NBUF, \_SB.PCI0.HDEF._Y1C._MIN, NBAS)  // _MIN: Minimum Base Address
+                CreateQWordField (NBUF, \_SB.PCI0.HDEF._Y1C._MAX, NMAS)  // _MAX: Maximum Base Address
+                CreateQWordField (NBUF, \_SB.PCI0.HDEF._Y1C._LEN, NLEN)  // _LEN: Length
                 Store (NHLA, NBAS)
                 Add (NHLA, Subtract (NHLL, 0x01), NMAS)
                 Store (NHLL, NLEN)
@@ -6265,7 +6265,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
             Method (XDSM, 4, Serialized)  // _DSM: Device-Specific Method
             {
-                ADBG ("HDAS XDSM")
+                ADBG ("HDEF XDSM")
                 If (PCIC (Arg0))
                 {
                     Return (PCID (Arg0, Arg1, Arg2, Arg3))
@@ -6298,11 +6298,11 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                         Case (0x03)
                         {
                             ADBG ("XDSM Fun 3 PPMS")
-                            If (CondRefOf (\_SB.PCI0.HDAS.PPMS))
+                            If (CondRefOf (\_SB.PCI0.HDEF.PPMS))
                             {
                                 ADBG ("PPMS:")
                                 ADBG (Arg3)
-                                Return (\_SB.PCI0.HDAS.PPMS (Arg3))
+                                Return (\_SB.PCI0.HDEF.PPMS (Arg3))
                             }
 
                             ADBG ("BUGBUG")
@@ -16339,7 +16339,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
     Scope (\_SB.PCI0)
     {
-        Device (HECI)
+        Device (IMEI)
         {
             Name (_ADR, 0x00160000)  // _ADR: Address
             Method (XDSM, 4, NotSerialized)  // _DSM: Device-Specific Method
@@ -17314,7 +17314,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     {
                         If (VIGD)
                         {
-                            \_SB.PCI0.GFX0.VLOC (0x00)
+                            \_SB.PCI0.IGPU.VLOC (0x00)
                         }
                     }
                 }
@@ -19601,7 +19601,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
             If (\VIGD)
             {
-                Store (\_SB.LID._LID (), \_SB.PCI0.GFX0.CLID)
+                Store (\_SB.LID._LID (), \_SB.PCI0.IGPU.CLID)
                 If (\WVIS)
                 {
                     \VBTD ()
@@ -19609,7 +19609,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             }
             ElseIf (\WVIS)
             {
-                Store (\_SB.LID._LID (), \_SB.PCI0.GFX0.CLID)
+                Store (\_SB.LID._LID (), \_SB.PCI0.IGPU.CLID)
                 \VBTD ()
             }
 
@@ -19687,11 +19687,11 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         \VSLD (\_SB.LID._LID ())
         If (\VIGD)
         {
-            Store (\_SB.LID._LID (), \_SB.PCI0.GFX0.CLID)
+            Store (\_SB.LID._LID (), \_SB.PCI0.IGPU.CLID)
         }
         ElseIf (\WVIS)
         {
-            Store (\_SB.LID._LID (), \_SB.PCI0.GFX0.CLID)
+            Store (\_SB.LID._LID (), \_SB.PCI0.IGPU.CLID)
         }
 
         If (LLess (Arg0, 0x04))
@@ -19768,13 +19768,13 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         {
             If (And (GBSX, 0x40))
             {
-                \_SB.PCI0.GFX0.IUEH (0x06)
+                \_SB.PCI0.IGPU.IUEH (0x06)
                 XOr (PB1E, 0x08, PB1E)
             }
 
             If (And (GBSX, 0x80))
             {
-                \_SB.PCI0.GFX0.IUEH (0x07)
+                \_SB.PCI0.IGPU.IUEH (0x07)
                 XOr (PB1E, 0x10, PB1E)
             }
 
@@ -20323,7 +20323,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             Store (\SRAH, \_SB.PCI0.RID)
             If (VIGD)
             {
-                Store (\SRHE, \_SB.PCI0.GFX0.RID)
+                Store (\SRHE, \_SB.PCI0.IGPU.RID)
             }
             Else
             {
@@ -21129,12 +21129,12 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 If (LEqual (DCKE, 0x01))
                 {
                     ADBG ("NFYG.DCKE")
-                    Notify (\_SB.PCI0.GFX0, 0x81)
+                    Notify (\_SB.PCI0.IGPU, 0x81)
                 }
                 ElseIf (LEqual (SUDK, 0x01))
                 {
                     ADBG ("NFYG.SUDK")
-                    Notify (\_SB.PCI0.GFX0, 0x81)
+                    Notify (\_SB.PCI0.IGPU, 0x81)
                 }
             }
         }
@@ -22812,7 +22812,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
     {
         If (LEqual (And (DIDX, 0x0F00), 0x0400))
         {
-            Notify (\_SB.PCI0.GFX0.DD1F, Arg0)
+            Notify (\_SB.PCI0.IGPU.DD1F, Arg0)
         }
     }
 
@@ -22905,9 +22905,9 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
 
         Method (_L66, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
         {
-            If (\_SB.PCI0.GFX0.GSSE)
+            If (\_SB.PCI0.IGPU.GSSE)
             {
-                \_SB.PCI0.GFX0.GSCI ()
+                \_SB.PCI0.IGPU.GSCI ()
             }
             Else
             {
@@ -27266,7 +27266,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
         Name (RID, 0x00)
     }
 
-    Scope (\_SB.PCI0.GFX0)
+    Scope (\_SB.PCI0.IGPU)
     {
         Name (RID, 0x00)
     }
@@ -27869,7 +27869,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 {
                     If (VIGD)
                     {
-                        \_SB.PCI0.GFX0.VLOC (0x01)
+                        \_SB.PCI0.IGPU.VLOC (0x01)
                     }
 
                     Notify (\_SB.LID, 0x80)
@@ -27899,7 +27899,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 {
                     If (VIGD)
                     {
-                        \_SB.PCI0.GFX0.VLOC (0x00)
+                        \_SB.PCI0.IGPU.VLOC (0x00)
                     }
 
                     Notify (\_SB.LID, 0x80)
@@ -28504,10 +28504,10 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
             {
                 Add (\BRLV, 0x02, Local0)
                 Store (\BNTN, Local3)
-                If (\_SB.PCI0.GFX0.DRDY)
+                If (\_SB.PCI0.IGPU.DRDY)
                 {
                     Store (DerefOf (Index (DerefOf (Index (BRTB, Local3)), Local0)), Local2)
-                    \_SB.PCI0.GFX0.AINT (0x01, Local2)
+                    \_SB.PCI0.IGPU.AINT (0x01, Local2)
                 }
             }
 
