@@ -15,14 +15,21 @@ Clover:
     brightness: AppleBacklightInjector.kext (installed to /L/E per Rehab's guide - don't know if Clover works)
     audio: VoodooHDA.kext
     iGPU: Lilu.kext + WhateverGreen.kext
-    USB (enables touchscreen & bluetooth): Lilu.kext + USBInjectAll.kext
+    USB (enables touchscreen & bluetooth): Lilu.kext + USBInjectAll.kext (+ ports patch or SSDT; fixes type-C 5Gbps)
     keyboard/touchpad/trackpad: VoodooPS2Controller.kext
     Ethernet: IntelMausiEthernet.kext
     Wifi: AirportBrcmFixup.kext (with Clover kext patches; see toledo's guide at tonymacx86)
     BT: BrcmFirmwareData.kext + BrcmPatchRAM2.kext (see above guide)
 
 Status:
-  most features work, including sleep/resume
-  no scrolling support (both trackpad & trackpoint used as standard mouse; tluck's fork didn't help)
-  TODO - make PrtSc disable TrackPad _only_
-  TODO - make TrackPoint mid button scroll work
+  most features work
+  sleep/resume: works; lid might be reversed (close then open -> triggers sleep); may have batt drain
+  HDMI: video out works (both HDMI port and via first type-C); audio is muted
+  speaker & mic: works w/ VoodooHDA; need to set PCM=100, iGain=0, Rec=50
+  headphone/mic combo jack: works; detection/auto-switch covers spkr/hp but not the mic
+  USB: most stuff work with patching; second type-C can only be used for charging
+  HID: no scrolling support (both trackpad & trackpoint used as standard mouse; tluck's fork didn't help)
+    TODO - make PrtSc disable TrackPad _only_
+    TODO - make TrackPoint mid button scroll work
+  DP output via type-C: untested
+  Handover etc: untested
