@@ -126,8 +126,11 @@
 			<string>SSDT-9-HdaDsp.aml</string>
 			<string>SSDT-10-TbtTypeC.aml</string>
 			<string>SSDT-11-Wwan.aml</string>
+			<string>SSDT-ALS0.aml</string>
+			<string>SSDT-NVME.aml</string>
 			<string>SSDT-PNLF.aml</string>
 			<string>SSDT-UIAC.aml</string>
+			<string>SSDT-XHCPRW.aml</string>
 		</array>
 	</dict>
 	<key>Boot</key>

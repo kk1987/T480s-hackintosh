@@ -67,6 +67,10 @@ I did a tri-boot setup with installation order as follows:
 
 ## Clover UEFI Setup
 
+### Clover
+
+* Verified working with sf.net versions r4658, r4674
+
 ### drivers64UEFI
 
 * ApfsDriverLoader-64
