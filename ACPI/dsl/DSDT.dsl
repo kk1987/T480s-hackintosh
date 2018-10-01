@@ -20396,7 +20396,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     Store (0x07D9, OSYS)
                 }
 
-                If (\_OSI ("Windows 2012"))
+                If (LOr(_OSI("Darwin"),_OSI ("Windows 2012")))
                 {
                     Store (0x01, \WIN8)
                     Store (0x07DC, OSYS)
@@ -20414,7 +20414,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                     Store (0x07DF, OSYS)
                 }
 
-                If(LOr(_OSI("Darwin"),_OSI("Linux")))
+                If(\_OSI("Linux"))
                 {
                     Store (0x01, \LNUX)
                     Store (0x03E8, OSYS)
@@ -24578,25 +24578,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "SKL     ", 0x00000000)
                 }
             }
 
-            Method (_PRW, 0, NotSerialized)  // _PRW: Power Resources for Wake
-            {
-                If (\LWCP)
-                {
-                    Return (Package (0x02)
-                    {
-                        0x17, 
-                        0x04
-                    })
-                }
-                Else
-                {
-                    Return (Package (0x02)
-                    {
-                        0x17, 
-                        0x03
-                    })
-                }
-            }
+            
 
             Method (_PSW, 1, NotSerialized)  // _PSW: Power State Wake
             {
