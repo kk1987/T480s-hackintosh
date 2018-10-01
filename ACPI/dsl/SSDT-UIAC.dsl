@@ -1,22 +1,6 @@
-// SSDT-UIAC-ALL.dsl
-//
-// This SSDT can be used as a template to build your own
-// customization for USBInjectAll.kext.
-//
-// This SSDT contains all ports, so using it is the same as without
-// a custom SSDT.  Delete ports that are not connected or ports you
-// do not need.
-//
-// Change the UsbConnector or portType as needed to match your
-// actual USB configuration.
-//
-// Note:
-// portType=0 seems to indicate normal external USB2 port (as seen in MacBookPro8,1)
-// portType=2 seems to indicate "internal device" (as seen in MacBookPro8,1)
-// portType=4 is used by MacBookPro8,3 (reason/purpose unknown)
-//
+// SSDT-UIAC.dsl
 
-DefinitionBlock ("", "SSDT", 2, "hack", "UIAC-ALL", 0)
+DefinitionBlock ("", "SSDT", 2, "hack", "UIAC", 0)
 {
     Device(UIAC)
     {
@@ -43,11 +27,6 @@ DefinitionBlock ("", "SSDT", 2, "hack", "UIAC-ALL", 0)
                     {
                         "UsbConnector", 9,
                         "port", Buffer() { 4, 0, 0, 0 },
-                    },
-                    "HS05", Package() // second/bottom type-C?
-                    {
-                        "UsbConnector", 9,
-                        "port", Buffer() { 5, 0, 0, 0 },
                     },
                     "HS07", Package() // Bluetooth
                     {
@@ -88,11 +67,6 @@ DefinitionBlock ("", "SSDT", 2, "hack", "UIAC-ALL", 0)
                     {
                         "UsbConnector", 9,
                         "port", Buffer() { 16, 0, 0, 0 },
-                    },
-                    "SS05", Package() // second/bottom type-C?
-                    {
-                        "UsbConnector", 9,
-                        "port", Buffer() { 17, 0, 0, 0 },
                     },
                 },
             },
