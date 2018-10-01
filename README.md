@@ -21,6 +21,7 @@ This repo is my notes and configuration files for my hackintosh (10.14 Mojave) i
 
 ### UEFI Settings:
 
+* UEFI Firmware version 1.25
 * TPM enabled (disabling would change SSDT names, but doesn't matter otherwise)
 * "Thunderbolt BIOS Assist" enabled (reduces power draw)
 
@@ -53,10 +54,11 @@ I did a tri-boot setup with installation order as follows:
   * something (sleeping without closing lid?) may trigger immediate wakes after sleep - persists until reboot
 * USB: everything works, except the second/bottom type-C port can only be used for charging
 * HID: No scrolling support; both TrackPad and TrackPoint function as PS/2 mouse
+  * Can alternatively use closed-source ELAN driver at https://github.com/linusyang92/macOS-ThinkPad-T480s for multi-touch TrackPad (need to disable TrackPoint in UEFI)
   * TODO - make PrtSc disable TrackPad _only_
   * TODO - make TrackPoint mid button scroll work
 
-### Not Working / untested
+### Not Working / Untested
 
 * Fingerprint reader (no driver)
 * Thunderbolt (device not showing up in Profiler)
@@ -111,5 +113,5 @@ I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
 * AirportBrcmFixup, for WiFi
   * Refer to toledo's [guide](https://www.tonymacx86.com/threads/broadcom-wifi-bluetooth-guide.242423/)
   * See KextsToPatch in config.plist
-* BrcmFirmwareRepo + BrcmPatchRAM2, for Bluetooth
+* BrcmFirmwareData + BrcmPatchRAM2, for Bluetooth
   * See toledo's guide
