@@ -53,10 +53,10 @@ I did a tri-boot setup with installation order as follows:
   * going to sleep takes about 25s
   * something (sleeping without closing lid?) may trigger immediate wakes after sleep - persists until reboot
 * USB: everything works, except the second/bottom type-C port can only be used for charging
-* HID: No scrolling support; both TrackPad and TrackPoint function as PS/2 mouse
+* HID: No multi-touch/scrolling; both TrackPad and TrackPoint function as PS/2 mouse
   * Can alternatively use closed-source ELAN driver at https://github.com/linusyang92/macOS-ThinkPad-T480s for multi-touch TrackPad (need to disable TrackPoint in UEFI)
+  * [Smart Scroll](http://www.marcmoini.com/sx_en.html) can be used to emulate mid-button TrackPoint scrolling (enable "Vector Scroll" with "Drag Button 3")
   * TODO - make PrtSc disable TrackPad _only_
-  * TODO - make TrackPoint mid button scroll work
 
 ### Not Working / Untested
 
@@ -104,7 +104,7 @@ I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
 * AppleBacklightInjector, for brightness
   * Installed to /L/E per RehabMan's guide - didn't test if Clover injection works
 * VoodooHDA, for audio
-  * I used pkg installer to install the prefPane & SettingsLoader, then restored original AppleHDA, removed VoodooHDA & AppleHDADisabler from /S/L/E and injected VoodooHDA with Clover instead
+  * Use the pkg installer, customize and select "UEFI/ESP -> Mojave"
   * Set iGain=0, PCM=100, Rec=50
 * Lilu, for various stuff below to work
 * WhateverGreen, for iGPU
