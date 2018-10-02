@@ -89,11 +89,6 @@ I did a tri-boot setup with installation order as follows:
 
 * (archived in this repo)
 
-### (Post-install) ACPI/patched
-* Patched DSDT + patched SSDTs + SSDT-PNLF.aml + SSDT-UIAC.aml
-* Set SSDR order in config.plist accordingly
-* See this repo for detailed changes
-
 ### (Post-install) kexts
 
 I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
@@ -119,3 +114,37 @@ I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
   * See KextsToPatch in config.plist
 * BrcmFirmwareData + BrcmPatchRAM2, for Bluetooth
   * See toledo's guide
+
+## ACPI Patching
+
+### General
+
+* Based on RehabMan's [guide](https://www.tonymacx86.com/threads/guide-patching-laptop-dsdt-ssdts.152573/)
+* See git changelog for details!!
+
+### DSDT
+
+* Basic fixes: HPET / IRQ / RTC / SMBUS / OSCheck
+* Renames: \_DSM -> XDSM, HDAS -> HDEF, HECI -> IMEI, GFX0 -> IGPU
+* "X220 battery fix" from RehabMan's repo
+* Brightness keys patch per [guide](https://www.tonymacx86.com/threads/guide-patching-dsdt-ssdt-for-laptop-backlight-control.152659/)
+* Fix for "Power LED blinking after wake"
+* \_PRW removed from LID
+
+### OEM SSDTs
+
+* SSDT-2-SaSsdt: patched for GFX0 -> IGPU renaming
+* SSDT-9-HdaDsp: patched for HDAS -> HDEF renaming
+
+### SSDT-PNLF
+
+* Created following RehabMan's [guide](https://www.tonymacx86.com/threads/guide-laptop-backlight-control-using-applebacklightinjector-kext.218222/)
+
+### SSDT-UIAC
+
+* Created following RehabMan's [guide](https://www.tonymacx86.com/threads/guide-creating-a-custom-ssdt-for-usbinjectall-kext.211311/)
+
+### SSDT-ALS0, SSDT-NVME, SSDT-XHCPRW
+
+* Taken from linusyang92's [repo](https://github.com/linusyang92/macOS-ThinkPad-T480s)
+* Looks like they improve stuff but I don't know for sure
