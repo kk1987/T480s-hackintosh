@@ -47,6 +47,7 @@ I did a tri-boot setup with installation order as follows:
 
 ### Limited functionality
 
+* Boot: random KPs on non-verbose boot
 * Audio: everything works fine, except for no HDMI audio and no auto switching between internal mic and external mic via the combo jack
 * HDMI: video output works, audio is muted (VoodooHDA limitation)
 * Sleep/resume
@@ -56,7 +57,6 @@ I did a tri-boot setup with installation order as follows:
 * HID: No multi-touch/scrolling; both TrackPad and TrackPoint function as PS/2 mouse
   * Can alternatively use closed-source ELAN driver at https://github.com/linusyang92/macOS-ThinkPad-T480s for multi-touch TrackPad (need to disable TrackPoint in UEFI)
   * [Smart Scroll](http://www.marcmoini.com/sx_en.html) can be used to emulate mid-button TrackPoint scrolling (enable "Vector Scroll" with "Drag Button 3")
-  * TODO - make PrtSc disable TrackPad _only_
 
 ### Not Working / Untested
 
