@@ -35,7 +35,7 @@
 					<key>Comment</key>
 					<string>change HDAS to HDEF</string>
 					<key>Disabled</key>
-					<true/>
+					<false/>
 					<key>Find</key>
 					<data>
 					SERBUw==
@@ -49,7 +49,7 @@
 					<key>Comment</key>
 					<string>change HECI to IMEI</string>
 					<key>Disabled</key>
-					<true/>
+					<false/>
 					<key>Find</key>
 					<data>
 					SEVDSQ==
@@ -63,7 +63,7 @@
 					<key>Comment</key>
 					<string>change GFX0 to IGPU</string>
 					<key>Disabled</key>
-					<true/>
+					<false/>
 					<key>Find</key>
 					<data>
 					R0ZYMA==
@@ -103,7 +103,7 @@
 		<key>SSDT</key>
 		<dict>
 			<key>DropOem</key>
-			<true/>
+			<false/>
 			<key>Generate</key>
 			<dict>
 				<key>PluginType</key>
@@ -112,26 +112,6 @@
 			<key>NoOemTableId</key>
 			<false/>
 		</dict>
-		<key>SortedOrder</key>
-		<array>
-			<string>SSDT-0-DptfTabl.aml</string>
-			<string>SSDT-1-Tpm2Tabl.aml</string>
-			<string>SSDT-2-SaSsdt.aml</string>
-			<string>SSDT-3-PerfTune.aml</string>
-			<string>SSDT-4-RVP7Rtd3.aml</string>
-			<string>SSDT-5-ProjSsdt.aml</string>
-			<string>SSDT-6-CpuSsdt.aml</string>
-			<string>SSDT-7-CtdpB.aml</string>
-			<string>SSDT-8-UsbCTabl.aml</string>
-			<string>SSDT-9-HdaDsp.aml</string>
-			<string>SSDT-10-TbtTypeC.aml</string>
-			<string>SSDT-11-Wwan.aml</string>
-			<string>SSDT-ALS0.aml</string>
-			<string>SSDT-NVME.aml</string>
-			<string>SSDT-PNLF.aml</string>
-			<string>SSDT-UIAC.aml</string>
-			<string>SSDT-XHCPRW.aml</string>
-		</array>
 	</dict>
 	<key>Boot</key>
 	<dict>

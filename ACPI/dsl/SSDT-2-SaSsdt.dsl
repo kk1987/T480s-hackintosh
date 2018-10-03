@@ -22,9 +22,9 @@ DefinitionBlock ("", "SSDT", 2, "LENOVO", "SaSsdt ", 0x00003000)
 {
     External (_SB_.LID_._LID, MethodObj)    // 0 Arguments (from opcode)
     External (_SB_.PCI0, DeviceObj)    // (from opcode)
-    External (_SB_.PCI0.IGPU, DeviceObj)    // (from opcode)
-    External (_SB_.PCI0.IGPU.HDOS, MethodObj)    // 0 Arguments (from opcode)
-    External (_SB_.PCI0.IGPU.HNOT, MethodObj)    // 1 Arguments (from opcode)
+    External (_SB_.PCI0.GFX0, DeviceObj)    // (from opcode)
+    External (_SB_.PCI0.GFX0.HDOS, MethodObj)    // 0 Arguments (from opcode)
+    External (_SB_.PCI0.GFX0.HNOT, MethodObj)    // 1 Arguments (from opcode)
     External (_SB_.PCI0.LPCB.EC__.BRNS, MethodObj)    // 0 Arguments (from opcode)
     External (_SB_.PCI0.LPCB.EC__.BRTW, PkgObj)    // (from opcode)
     External (BRLV, UnknownObj)    // (from opcode)
@@ -157,7 +157,7 @@ DefinitionBlock ("", "SSDT", 2, "LENOVO", "SaSsdt ", 0x00003000)
         Offset (0x1FE)
     }
 
-    Scope (\_SB.PCI0.IGPU)
+    Scope (\_SB.PCI0.GFX0)
     {
         Method (_DOS, 1, NotSerialized)  // _DOS: Disable Output Switching
         {
@@ -1687,7 +1687,7 @@ DefinitionBlock ("", "SSDT", 2, "LENOVO", "SaSsdt ", 0x00003000)
                     If (LAnd (LGreaterEqual (Arg0, Zero), LLessEqual (Arg0, 0x64)))
                     {
                         Store (Divide (Multiply (Arg0, 0xFF), 0x64, ), Local0)
-                        \_SB.PCI0.IGPU.AINT (One, Local0)
+                        \_SB.PCI0.GFX0.AINT (One, Local0)
                         Store (Arg0, BRTL)
                     }
                 }
@@ -2431,7 +2431,7 @@ DefinitionBlock ("", "SSDT", 2, "LENOVO", "SaSsdt ", 0x00003000)
             Store (0x03, CSTS)
             If (LAnd (LEqual (CHPD, Zero), LEqual (Arg1, Zero)))
             {
-                Notify (\_SB.PCI0.IGPU, Arg1)
+                Notify (\_SB.PCI0.GFX0, Arg1)
             }
 
             If (CondRefOf (HNOT))
@@ -2440,7 +2440,7 @@ DefinitionBlock ("", "SSDT", 2, "LENOVO", "SaSsdt ", 0x00003000)
             }
             Else
             {
-                Notify (\_SB.PCI0.IGPU, 0x80)
+                Notify (\_SB.PCI0.GFX0, 0x80)
             }
 
             Return (Zero)
@@ -2810,7 +2810,7 @@ DefinitionBlock ("", "SSDT", 2, "LENOVO", "SaSsdt ", 0x00003000)
         }
     }
 
-    Scope (\_SB.PCI0.IGPU)
+    Scope (\_SB.PCI0.GFX0)
     {
         Device (SKC0)
         {

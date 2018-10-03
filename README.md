@@ -22,7 +22,7 @@ This repo is my notes and configuration files for my hackintosh (10.14 Mojave) i
 ### UEFI Settings:
 
 * UEFI Firmware version 1.25
-* TPM enabled (disabling would change SSDT names, but doesn't matter otherwise)
+* TPM enabled (disabling would change SSDT names and likely DSDT too - requiring repatch)
 * "Thunderbolt BIOS Assist" enabled (reduces power draw)
 
 ### Partitioning & other OSes:
@@ -120,12 +120,13 @@ I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
 ### General
 
 * Based on RehabMan's [guide](https://www.tonymacx86.com/threads/guide-patching-laptop-dsdt-ssdts.152573/)
+* "Partial Hotpatch" configuration (patched DSDT & add-on SSDTs in ACPI/patched, DropOem=false, no SortedOrder specified)
 * See git changelog for details!!
 
 ### DSDT
 
 * Basic fixes: HPET / IRQ / RTC / SMBUS / OSCheck
-* Renames: \_DSM -> XDSM, HDAS -> HDEF, HECI -> IMEI, GFX0 -> IGPU
+* Rename: \_DSM -> XDSM
 * "X220 battery fix" from RehabMan's repo
 * Brightness keys patch per [guide](https://www.tonymacx86.com/threads/guide-patching-dsdt-ssdt-for-laptop-backlight-control.152659/)
 * Fix for "Power LED blinking after wake"
@@ -133,8 +134,7 @@ I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
 
 ### OEM SSDTs
 
-* SSDT-2-SaSsdt: patched for GFX0 -> IGPU renaming
-* SSDT-9-HdaDsp: patched for HDAS -> HDEF renaming
+* Unchanged
 
 ### SSDT-PNLF
 
