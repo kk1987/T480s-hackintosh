@@ -15,8 +15,8 @@ This repo is my notes and configuration files for my hackintosh (10.14 Mojave) i
 
 ### Hardware (upgraded/replaced):
 
-* 16GB RAM (8G onboard + 8G SODIMM, DDR4)
-* ADATA SX8200 480GB NVMe SSD
+* 24GB RAM (8G onboard + 16G SODIMM, DDR4)
+* ADATA SX8200 960GB NVMe SSD
 * BCM94352Z M.2 WiFi + BT (card is E-key while mobo slot is A-key; mechanically modified with knife/file to fit)
 
 ### UEFI Settings:
