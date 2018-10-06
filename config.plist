@@ -23,7 +23,7 @@
 				<key>FixHPET</key>
 				<false/>
 				<key>FixIPIC</key>
-				<true/>
+				<false/>
 				<key>FixRTC</key>
 				<false/>
 				<key>FixTMR</key>
@@ -73,6 +73,200 @@
 					SUdQVQ==
 					</data>
 				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change _DSM to XDSM</string>
+					<key>Find</key>
+					<data>
+					X0RTTQ==
+					</data>
+					<key>Replace</key>
+					<data>
+					WERTTQ==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change _OSI to XOSI</string>
+					<key>Find</key>
+					<data>
+					X09TSQ==
+					</data>
+					<key>Replace</key>
+					<data>
+					WE9TSQ==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change HPET to XPET</string>
+					<key>Find</key>
+					<data>
+					BkhQRVQ=
+					</data>
+					<key>Replace</key>
+					<data>
+					BlhQRVQ=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change SLTP to XLTP</string>
+					<key>Disabled</key>
+					<true/>
+					<key>Find</key>
+					<data>
+					U0xUUA==
+					</data>
+					<key>Replace</key>
+					<data>
+					WExUUA==
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change Method(_Q15,0,N) to XQ15</string>
+					<key>Find</key>
+					<data>
+					X1ExNQA=
+					</data>
+					<key>Replace</key>
+					<data>
+					WFExNQA=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change Method(_Q14,0,N) to XQ14</string>
+					<key>Find</key>
+					<data>
+					X1ExNAA=
+					</data>
+					<key>Replace</key>
+					<data>
+					WFExNAA=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change Method(GBIF,3,N) to XBIF</string>
+					<key>Find</key>
+					<data>
+					R0JJRgM=
+					</data>
+					<key>Replace</key>
+					<data>
+					WEJJRgM=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change Method(GBIX,3,N) to XBIX</string>
+					<key>Find</key>
+					<data>
+					R0JJWAM=
+					</data>
+					<key>Replace</key>
+					<data>
+					WEJJWAM=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change Method(GBST,4,N) to XBST</string>
+					<key>Find</key>
+					<data>
+					R0JTVAQ=
+					</data>
+					<key>Replace</key>
+					<data>
+					WEJTVAQ=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change Method(AJTP,3,N) to XJTP</string>
+					<key>Find</key>
+					<data>
+					QUpUUAM=
+					</data>
+					<key>Replace</key>
+					<data>
+					WEpUUAM=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change Method(_L17,0,N) to XL17</string>
+					<key>Find</key>
+					<data>
+					X0wxNwA=
+					</data>
+					<key>Replace</key>
+					<data>
+					WEwxNwA=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>Change Method(OWAK,1,N) to XWAK</string>
+					<key>Find</key>
+					<data>
+					T1dBSwE=
+					</data>
+					<key>Replace</key>
+					<data>
+					WFdBSwE=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(GPRW,2,N) to XPRW</string>
+					<key>Find</key>
+					<data>
+					R1BSVwI=
+					</data>
+					<key>Replace</key>
+					<data>
+					WFBSVwI=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Name(_PRW) to ZPRW</string>
+					<key>Find</key>
+					<data>
+					CF9QUlc=
+					</data>
+					<key>Replace</key>
+					<data>
+					CFpQUlc=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(_PTS,1,N) to ZPTS</string>
+					<key>Find</key>
+					<data>
+					X1BUUwE=
+					</data>
+					<key>Replace</key>
+					<data>
+					WlBUUwE=
+					</data>
+				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change Method(_WAK,1,S) to ZWAK</string>
+					<key>Find</key>
+					<data>
+					X1dBSwk=
+					</data>
+					<key>Replace</key>
+					<data>
+					WldBSwk=
+					</data>
+				</dict>
 			</array>
 		</dict>
 		<key>DisabledAML</key>
@@ -112,6 +306,30 @@
 			<key>NoOemTableId</key>
 			<false/>
 		</dict>
+		<key>SortedOrder</key>
+		<array>
+			<string>SSDT-RMCF.aml</string>
+			<string>SSDT-XOSI.aml</string>
+			<string>SSDT-PNLF.aml</string>
+			<string>SSDT-DDGPU.aml</string>
+			<string>SSDT-GPRW.aml</string>
+			<string>SSDT-XHCPRW.aml</string>
+			<string>SSDT-PTSWAK.aml</string>
+			<string>SSDT-ALS0.aml</string>
+			<string>SSDT-LPC.aml</string>
+			<string>SSDT-UIAC.aml</string>
+			<string>SSDT-HPET.aml</string>
+			<string>SSDT-USBX.aml</string>
+			<string>SSDT-NVME.aml</string>
+			<string>SSDT-GLAN.aml</string>
+			<string>SSDT-MCHC.aml</string>
+			<string>SSDT-MEM2.aml</string>
+			<string>SSDT-DMAC.aml</string>
+			<string>SSDT-PWRB.aml</string>
+			<string>SSDT-SMBUS.aml</string>
+			<string>SSDT-KBD.aml</string>
+			<string>SSDT-BATT.aml</string>
+		</array>
 	</dict>
 	<key>Boot</key>
 	<dict>
@@ -164,6 +382,11 @@
 				<data>
 				AAAwAQ==
 				</data>
+			</dict>
+			<key>PciRoot(0)/Pci(0x1f,3)</key>
+			<dict>
+				<key>#layout-id</key>
+				<integer>11</integer>
 			</dict>
 		</dict>
 		<key>USB</key>

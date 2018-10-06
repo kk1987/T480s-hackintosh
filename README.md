@@ -22,8 +22,7 @@ This repo is my notes and configuration files for my hackintosh (10.14 Mojave) i
 ### UEFI Settings:
 
 * UEFI Firmware version 1.25
-* TPM enabled (disabling would change SSDT names and likely DSDT too - requiring repatch)
-* "Thunderbolt BIOS Assist" enabled (reduces power draw)
+* "Thunderbolt BIOS Assist" enabled (optional, reduces power draw in Linux)
 
 ### Partitioning & other OSes:
 
@@ -47,7 +46,7 @@ I did a tri-boot setup with installation order as follows:
 
 ### Limited functionality
 
-* Boot: random KPs on non-verbose boot
+* Boot: random KP/hangs on non-verbose boot
 * Audio: everything works fine, except for no HDMI audio and no auto switching between internal mic and external mic via the combo jack
 * HDMI: video output works, audio is muted (VoodooHDA limitation)
 * Sleep/resume
@@ -117,34 +116,7 @@ I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
 
 ## ACPI Patching
 
-### General
-
 * Based on RehabMan's [guide](https://www.tonymacx86.com/threads/guide-patching-laptop-dsdt-ssdts.152573/)
-* "Partial Hotpatch" configuration (patched DSDT & add-on SSDTs in ACPI/patched, DropOem=false, no SortedOrder specified)
+* Current: "Full Hotpatch" configuration (most SSDTs taken from linusyang92's [repo](https://github.com/linusyang92/macOS-ThinkPad-T480s))
+* Commit `a95dec1`: "Partial Hotpatch" configuration (patched DSDT & add-on SSDTs in ACPI/patched)
 * See git changelog for details!!
-
-### DSDT
-
-* Basic fixes: HPET / IRQ / RTC / SMBUS / OSCheck
-* Rename: \_DSM -> XDSM
-* "X220 battery fix" from RehabMan's repo
-* Brightness keys patch per [guide](https://www.tonymacx86.com/threads/guide-patching-dsdt-ssdt-for-laptop-backlight-control.152659/)
-* Fix for "Power LED blinking after wake"
-* \_PRW removed from LID
-
-### OEM SSDTs
-
-* Unchanged
-
-### SSDT-PNLF
-
-* Created following RehabMan's [guide](https://www.tonymacx86.com/threads/guide-laptop-backlight-control-using-applebacklightinjector-kext.218222/)
-
-### SSDT-UIAC
-
-* Created following RehabMan's [guide](https://www.tonymacx86.com/threads/guide-creating-a-custom-ssdt-for-usbinjectall-kext.211311/)
-
-### SSDT-ALS0, SSDT-NVME, SSDT-XHCPRW
-
-* Taken from linusyang92's [repo](https://github.com/linusyang92/macOS-ThinkPad-T480s)
-* Looks like they improve stuff but I don't know for sure
