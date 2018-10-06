@@ -22,7 +22,7 @@ This repo is my notes and configuration files for my hackintosh (10.14 Mojave) i
 ### UEFI Settings:
 
 * UEFI Firmware version 1.25
-* "Thunderbolt BIOS Assist" enabled (optional, reduces power draw in Linux)
+* "Thunderbolt BIOS Assist" disabled (default)
 
 ### Partitioning & other OSes:
 
@@ -41,27 +41,25 @@ I did a tri-boot setup with installation order as follows:
   * Touchscreen
   * Camera
   * Card reader
-  * HDMI (video) output, standalone or via USB type-C
-  * Sleep/resume
+  * All USB ports
+  * HDMI (video only) output (video only), standalone or via USB type-C
+  * DP output (video only)
+  * Sleep/resume (takes 25-30s to sleep)
 
 ### Limited functionality
 
 * Boot: random KP/hangs on non-verbose boot
 * Audio: everything works fine, except for no HDMI audio and no auto switching between internal mic and external mic via the combo jack
-* HDMI: video output works, audio is muted (VoodooHDA limitation)
-* Sleep/resume
-  * going to sleep takes about 25s
-  * something (sleeping without closing lid?) may trigger immediate wakes after sleep - persists until reboot
-* USB: everything works, except the second/bottom type-C port can only be used for charging
+* HDMI/DP
+  * Video output works, audio is muted (VoodooHDA limitation)
+  * May see a reduced max resolution
 * HID: No multi-touch/scrolling; both TrackPad and TrackPoint function as PS/2 mouse
   * Can alternatively use closed-source ELAN driver at https://github.com/linusyang92/macOS-ThinkPad-T480s for multi-touch TrackPad (need to disable TrackPoint in UEFI)
   * [Smart Scroll](http://www.marcmoini.com/sx_en.html) can be used to emulate mid-button TrackPoint scrolling (enable "Vector Scroll" with "Drag Button 3")
-
 ### Not Working / Untested
 
 * Fingerprint reader (no driver)
-* Thunderbolt (device not showing up in Profiler)
-* DP output via type-C (untested)
+* Thunderbolt (untested)
 * BT Handover etc. (untested)
 
 ## Clover UEFI Setup

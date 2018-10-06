@@ -329,6 +329,7 @@
 			<string>SSDT-SMBUS.aml</string>
 			<string>SSDT-KBD.aml</string>
 			<string>SSDT-BATT.aml</string>
+			<string>SSDT-THBT.aml</string>
 		</array>
 	</dict>
 	<key>Boot</key>
@@ -336,7 +337,7 @@
 		<key>#DefaultVolume</key>
 		<string>LastBootedVolume</string>
 		<key>Arguments</key>
-		<string>-v dart=0 nv_disable=1 kext-dev-mode=1</string>
+		<string>-v dart=0 nv_disable=1 bpr_probedelay=100 bpr_initialdelay=300 bpr_postresetdelay=300</string>
 		<key>DefaultVolume</key>
 		<string>apfs</string>
 		<key>NeverHibernate</key>
@@ -382,6 +383,8 @@
 				<data>
 				AAAwAQ==
 				</data>
+				<key>enable-hdmi20</key>
+				<integer>1</integer>
 			</dict>
 			<key>PciRoot(0)/Pci(0x1f,3)</key>
 			<dict>
