@@ -8,7 +8,7 @@ This repo is my notes and configuration files for my hackintosh (10.14 Mojave) i
 
 * i5 8250U CPU, Intel UHD 620 (no dGPU)
 * 1080p screen w/ touch (LCD: IVO R140NWF5, Touchscreen: ELAN)
-* Realtek ALC257
+* Realtek ALC3287 (ALC257?)
 * Intel Ethernet
 * Synaptics TrackPoint + ELAN TrackPad
 * Synaptics Fingerprint Reader
@@ -21,8 +21,9 @@ This repo is my notes and configuration files for my hackintosh (10.14 Mojave) i
 
 ### UEFI Settings:
 
-* UEFI Firmware version 1.25
-* "Thunderbolt BIOS Assist" disabled (default)
+* Current: UEFI Firmware version 1.26
+  * "Thunderbolt BIOS Assist": disable (default) to make front type-C port work in macOS; enable to reduce idle power consumption in Linux
+* Static / partial-hotpatch ACPI files before `d6dd12a` were patched against UEFI version 1.25, all ports/devices enabled (default), and "Thunderbolt BIOS Assist" enabled
 
 ### Partitioning & other OSes:
 
@@ -56,6 +57,7 @@ I did a tri-boot setup with installation order as follows:
 * HID: No multi-touch/scrolling; both TrackPad and TrackPoint function as PS/2 mouse
   * Can alternatively use closed-source ELAN driver at https://github.com/linusyang92/macOS-ThinkPad-T480s for multi-touch TrackPad (need to disable TrackPoint in UEFI)
   * [Smart Scroll](http://www.marcmoini.com/sx_en.html) can be used to emulate mid-button TrackPoint scrolling (enable "Vector Scroll" with "Drag Button 3")
+
 ### Not Working / Untested
 
 * Fingerprint reader (no driver)
@@ -88,13 +90,11 @@ I did a tri-boot setup with installation order as follows:
 
 ### (Post-install) kexts
 
-I put them under EFI/CLOVER/kexts/Other unless otherwise noted.
+I put all extra kexts under EFI/CLOVER/kexts/Other.
 
-* FakeSMC, for Hackintosh to boot
-  * Okay to keep all all sensor plugins
+* FakeSMC (w/ all plugins), for Hackintosh to boot
 * ACPIBatteryManager, for battery status
 * AppleBacklightInjector, for brightness
-  * Installed to /L/E per RehabMan's guide - didn't test if Clover injection works
 * VoodooHDA, for audio
   * Use the pkg installer, customize and select "UEFI/ESP -> Mojave"
   * Set iGain=0, PCM=100, Rec=50
