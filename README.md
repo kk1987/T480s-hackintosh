@@ -2,14 +2,18 @@
 
 This repo is my notes and configuration files for my hackintosh (10.14 Mojave) installation on a Thinkpad T480s.
 
+The Clover files in this repo (config.plist + ACPI/patched/ + kexts/Other/ + drivers64UEFI) _in theory_ should boot macOS 10.14, installer or post-install, on any T480s. There's absolutely zero guarantee though, since I never tested on a different machine.
+
+The EDID injection is specific to the IVO touch panel and probably should be disabled for other configurations. Also for initial booting, it might be necessary to inject an invalid ig-platform-id like 0x12344321. Subsequent boots should be fine without.
+
 ## Basic Info
 
 ### Hardware (OEM):
 
 * i5 8250U CPU, Intel UHD 620 (no dGPU)
-* 1080p screen w/ touch (LCD: IVO R140NWF5, Touchscreen: ELAN)
+* 1080p screen w/ touch (IVO R140NWF5 R6, w/ ELAN USB touchscreen built-in)
 * Realtek ALC3287 (ALC257?)
-* Intel Ethernet
+* Intel Ethernet I219-V
 * Synaptics TrackPoint + ELAN TrackPad
 * Synaptics Fingerprint Reader
 
@@ -50,13 +54,11 @@ I did a tri-boot setup with installation order as follows:
 ### Limited functionality
 
 * Boot: random KP/hangs on non-verbose boot
-* Audio: everything works fine, except for no HDMI audio and no auto switching between internal mic and external mic via the combo jack
-* HDMI/DP
-  * Video output works, audio is muted (VoodooHDA limitation)
-  * May see a reduced max resolution
+* Audio: no HDMI audio (device exists but is muted) and no auto switching between internal mic and external mic via the combo jack (headphone/speaker switching seems to be working)
+* Display: noticeable color banding on gradients (the FHD touch panel seems to be 6-bit, as reported in Intel Driver's settings under Windows, but the banding seems to be worse in macOS)
 * HID: No multi-touch/scrolling; both TrackPad and TrackPoint function as PS/2 mouse
-  * Can alternatively use closed-source ELAN driver at https://github.com/linusyang92/macOS-ThinkPad-T480s for multi-touch TrackPad (need to disable TrackPoint in UEFI)
   * [Smart Scroll](http://www.marcmoini.com/sx_en.html) can be used to emulate mid-button TrackPoint scrolling (enable "Vector Scroll" with "Drag Button 3")
+  * Alternatively, multi-touch trackpad can be enabled using patched ELAN driver found at https://github.com/linusyang92/macOS-ThinkPad-T480s (requires disabling TrackPoint in UEFI though)
 
 ### Not Working / Untested
 
@@ -76,19 +78,11 @@ I did a tri-boot setup with installation order as follows:
 * NvmExpressDxe-64
 * AptioMemoryFix-64 (or OsxAptioFixDrv-64 + EmuVariableUefi-64)
 
-### (Pre-install) Minimal Setup for Booting Installer
-
-* drivers64UEFI: see above
-* kexts: FakeSMC + VoodooPS2Controller (anything else is optional)
-* config.plist: use the one from RehabMan's [guide](https://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/)
-  * Should boot as-is with an invalid ig-platform-id like 0x12344321 specified at boot
-  * Can alternatively apply Lilu+WhateverGreen+Devices/Properties patches or use the full post-install setup (untested)
-
-### (Post-install) config.plist
+### config.plist
 
 * (archived in this repo)
 
-### (Post-install) kexts
+### kexts
 
 I put all extra kexts under EFI/CLOVER/kexts/Other.
 
@@ -117,4 +111,5 @@ I put all extra kexts under EFI/CLOVER/kexts/Other.
 * Based on RehabMan's [guide](https://www.tonymacx86.com/threads/guide-patching-laptop-dsdt-ssdts.152573/)
 * Current: "Full Hotpatch" configuration (most SSDTs taken from linusyang92's [repo](https://github.com/linusyang92/macOS-ThinkPad-T480s))
 * Commit `a95dec1`: "Partial Hotpatch" configuration (patched DSDT & add-on SSDTs in ACPI/patched)
-* See git changelog for details!!
+  * This likely won't work with different hardware specs, or even different UEFI versions/settings
+  * See git changelog for details. (Mostly just FYI which patches are needed)

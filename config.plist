@@ -334,12 +334,10 @@
 	</dict>
 	<key>Boot</key>
 	<dict>
-		<key>#DefaultVolume</key>
+		<key>DefaultVolume</key>
 		<string>LastBootedVolume</string>
 		<key>Arguments</key>
 		<string>-v dart=0 nv_disable=1 bpr_probedelay=100 bpr_initialdelay=300 bpr_postresetdelay=300</string>
-		<key>DefaultVolume</key>
-		<string>apfs</string>
 		<key>NeverHibernate</key>
 		<true/>
 		<key>Secure</key>
