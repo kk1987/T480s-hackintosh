@@ -4,7 +4,7 @@ This repo is my notes and configuration files for my hackintosh (10.14 Mojave) i
 
 The Clover files in this repo (config.plist + ACPI/patched/ + kexts/Other/ + drivers64UEFI) _in theory_ should boot macOS 10.14, installer or post-install, on any T480s. There's absolutely zero guarantee though, since I never tested on a different machine.
 
-The EDID injection is specific to the IVO touch panel and probably should be disabled for other configurations. Also for initial booting, it might be necessary to inject an invalid ig-platform-id like 0x12344321. Subsequent boots should be fine without.
+For initial booting, it might be necessary to inject an invalid ig-platform-id like 0x12344321. Subsequent boots should be fine without.
 
 ## Basic Info
 
@@ -88,7 +88,7 @@ I put all extra kexts under EFI/CLOVER/kexts/Other.
 
 * FakeSMC (w/ all plugins), for Hackintosh to boot
 * ACPIBatteryManager, for battery status
-* AppleBacklightInjector, for brightness
+* AppleBacklightFixup, for brightness
 * VoodooHDA, for audio
   * Use the pkg installer, customize and select "UEFI/ESP -> Mojave"
   * Set iGain=0, PCM=100, Rec=50
