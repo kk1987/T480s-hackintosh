@@ -313,6 +313,7 @@
 			<string>SSDT-KBD.aml</string>
 			<string>SSDT-BATT.aml</string>
 			<string>SSDT-THBT.aml</string>
+			<string>SSDT-CODEC.aml</string>
 		</array>
 	</dict>
 	<key>Boot</key>

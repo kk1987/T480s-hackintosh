@@ -1,8 +1,8 @@
 ## Introduction
 
-This repo is my notes and configuration files for my hackintosh (10.14 Mojave) installation on a Thinkpad T480s.
+This repo is my notes and configuration files for my hackintosh (10.14 Mojave) installation on a Thinkpad T480s. It's originally posted at <https://www.tonymacx86.com/threads/success-macos-10-14-on-thinkpad-t480s.261318/>.
 
-The Clover files in this repo (config.plist + ACPI/patched/ + kexts/Other/ + drivers64UEFI) _in theory_ should boot macOS 10.14, installer or post-install, on any T480s. There's absolutely zero guarantee though, since I never tested on a different machine.
+The Clover files in this repo (config.plist + ACPI/patched/ + kexts/Other/ + drivers64UEFI) _in theory_ should boot macOS 10.14, installer or post-install, on any T480s. It may work on similar laptops like T480/T580/P52s too. There's absolutely zero guarantee though, since I never tested on a different machine.
 
 For initial booting, it might be necessary to inject an invalid ig-platform-id like 0x12344321. Subsequent boots should be fine without.
 
@@ -12,7 +12,7 @@ For initial booting, it might be necessary to inject an invalid ig-platform-id l
 
 * i5 8250U CPU, Intel UHD 620 (no dGPU)
 * 1080p screen w/ touch (IVO R140NWF5 R6, w/ ELAN USB touchscreen built-in)
-* Realtek ALC3287 (ALC257?)
+* Realtek ALC3287 ("ALC257")
 * Intel Ethernet I219-V
 * Synaptics TrackPoint + ELAN TrackPad
 * Synaptics Fingerprint Reader
@@ -42,28 +42,33 @@ I did a tri-boot setup with installation order as follows:
   * Keyboard & TrackPoint/TrackPad (as mouse)
   * Ethernet, WiFi, Bluetooth
   * Screen brightness & brightness shortcut keys
-  * Basic audio including speaker, internal mic, headphone/mic combo jack
+  * Basic audio including speaker, internal mic, headphone jack
   * Touchscreen
   * Camera
   * Card reader
   * All USB ports
-  * HDMI (video only) output (video only), standalone or via USB type-C
-  * DP output (video only)
+  * HDMI video port, with audio
+  * USB type-C video output, with audio
   * Sleep/resume (takes 25-30s to sleep)
+  * Thunderbolt (as long as you didn't enable "Thunderbolt BIOS Assist")
 
 ### Limited functionality
 
-* Boot: random KP/hangs on non-verbose boot
-* Audio: no HDMI audio (device exists but is muted) and no auto switching between internal mic and external mic via the combo jack (headphone/speaker switching seems to be working)
-* Display: noticeable color banding on gradients (the FHD touch panel seems to be 6-bit, as reported in Intel Driver's settings under Windows, but the banding seems to be worse in macOS)
+* Boot: random KP/hangs when rebooting from Windows or Linux (next reboot would be fine)
 * HID: No multi-touch/scrolling; both TrackPad and TrackPoint function as PS/2 mouse
   * [Smart Scroll](http://www.marcmoini.com/sx_en.html) can be used to emulate mid-button TrackPoint scrolling (enable "Vector Scroll" with "Drag Button 3")
-  * Alternatively, multi-touch trackpad can be enabled using patched ELAN driver found at https://github.com/linusyang92/macOS-ThinkPad-T480s (requires disabling TrackPoint in UEFI though)
+  * Alternatively, multi-touch trackpad can be enabled using patched ELAN driver found at <https://github.com/linusyang92/macOS-ThinkPad-T480s> (requires disabling TrackPoint in UEFI though)
+* Audio
+  * (I don't see why it's ever needed but) there's no external mic support
+  * "out of the box" headphone sound may be glitchy. Disabling "Use ambient noise reduction" in Settings -> Sound -> Input seems to fix this
+  * DP/HDMI audio output via USB type-C: it works, but compatibility may be limited. I have an Apple type-C to HDMI adapter that works, and a StarTek type-C to DP cable that doesn't. Both work on a real MacBook, obviously
+  * Alternatively, VoodooHDA can be used. It supports enternal mic via combo jack (without auto-switching) but doesn't support HDMI audio. Configuration in `Info.plist` need to be updated with `iGain=0, PCM=100, Rec=50`
+* Display
+  * HiDPI can be enabled using <https://github.com/xzhih/one-key-hidpi> but there will be the glitch-after-wake issue, which cannot be solved by the EDID patching provided by one-key-hidpi script (the patch sets panel depth as 8-bit and will cause a blank screen on boot on my FHD touch panel)
 
 ### Not Working / Untested
 
 * Fingerprint reader (no driver)
-* Thunderbolt (untested)
 * BT Handover etc. (untested)
 
 ## Clover UEFI Setup
@@ -89,9 +94,7 @@ I put all extra kexts under EFI/CLOVER/kexts/Other.
 * FakeSMC (w/ all plugins), for Hackintosh to boot
 * ACPIBatteryManager, for battery status
 * AppleBacklightFixup, for brightness
-* VoodooHDA, for audio
-  * Use the pkg installer, customize and select "UEFI/ESP -> Mojave"
-  * Set iGain=0, PCM=100, Rec=50
+* AppleALC + CodecCommander, for audio
 * Lilu, for various stuff below to work
 * WhateverGreen, for iGPU
   * See Devices/Properties patches in config.plist (set ig-platform-id & device-id + patch for 32MB DVMT-prealloc)
@@ -100,11 +103,8 @@ I put all extra kexts under EFI/CLOVER/kexts/Other.
   * See SSDT-UIAC.dsl for machine-specific patch
 * VoodooPS2Controller, for keyboard/touchpad/trackpad
 * IntelMausiEthernet, for Ethernet
-* AirportBrcmFixup, for WiFi
+* AirportBrcmFixup, for WiFi; BrcmFirmwareData + BrcmPatchRAM2, for Bluetooth
   * Refer to toledo's [guide](https://www.tonymacx86.com/threads/broadcom-wifi-bluetooth-guide.242423/)
-  * See KextsToPatch in config.plist
-* BrcmFirmwareData + BrcmPatchRAM2, for Bluetooth
-  * See toledo's guide
 
 ## ACPI Patching
 
