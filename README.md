@@ -54,7 +54,6 @@ I did a tri-boot setup with installation order as follows:
 
 ### Limited functionality
 
-* Boot: random KP/hangs when rebooting from Windows or Linux (next reboot would be fine)
 * HID: No multi-touch/scrolling; both TrackPad and TrackPoint function as PS/2 mouse
   * [Smart Scroll](http://www.marcmoini.com/sx_en.html) can be used to emulate mid-button TrackPoint scrolling (enable "Vector Scroll" with "Drag Button 3")
   * Alternatively, multi-touch trackpad can be enabled using patched ELAN driver found at <https://github.com/linusyang92/macOS-ThinkPad-T480s> (requires disabling TrackPoint in UEFI though)
