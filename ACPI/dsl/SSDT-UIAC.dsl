@@ -28,6 +28,7 @@ DefinitionBlock ("", "SSDT", 2, "hack", "UIAC", 0)
                         "UsbConnector", 9,
                         "port", Buffer() { 4, 0, 0, 0 },
                     },
+                    // HS05: IR Camera, do not enable (screws up FaceTime)
                     "HS07", Package() // Bluetooth
                     {
                         "UsbConnector", 255,

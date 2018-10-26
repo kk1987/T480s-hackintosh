@@ -1,8 +1,15 @@
 ## Introduction
 
+----
+
+STATUS - this repo is no longer updated as I've switched to a P52s. I did have success booting a P52s initially with the content this repo. Subsequent tweaks for that machine are stored at <https://github.com/kk1987/P52s-hackintosh> which might be a better reference for P52s/T580/T480 due to the hardware similarity (most notably T480s seems to use a different TrackPad/TrackPoint implementation.)
+
+----
+
+
 This repo is my notes and configuration files for my hackintosh (10.14 Mojave) installation on a Thinkpad T480s. It's originally posted at <https://www.tonymacx86.com/threads/success-macos-10-14-on-thinkpad-t480s.261318/>.
 
-The Clover files in this repo (config.plist + ACPI/patched/ + kexts/Other/ + drivers64UEFI) _in theory_ should boot macOS 10.14, installer or post-install, on any T480s. It may work on similar laptops like T480/T580/P52s too. There's absolutely zero guarantee though, since I never tested on a different machine.
+The Clover files in this repo (config.plist + ACPI/patched/ + kexts/Other/ + drivers64UEFI) _in theory_ should boot macOS 10.14, installer or post-install, on any T480s. It may work on similar laptops like T480/T580/P52s too. ~~There's absolutely zero guarantee though, since I never tested on a different machine.~~ Verified working on my P52s.
 
 For initial booting, it might be necessary to inject an invalid ig-platform-id like 0x12344321. Subsequent boots should be fine without.
 
