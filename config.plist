@@ -94,20 +94,6 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change SLTP to XLTP</string>
-					<key>Disabled</key>
-					<true/>
-					<key>Find</key>
-					<data>
-					U0xUUA==
-					</data>
-					<key>Replace</key>
-					<data>
-					WExUUA==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
 					<string>Change Method(_Q15,0,N) to XQ15</string>
 					<key>Find</key>
 					<data>
